@@ -244,27 +244,7 @@ int povArrayX=0; //these values are 0-3, but them together in the array produce 
 int povArrayY=0;
 int povLayer=2;  
 
-int animate[4][4][4] = {
-{{0, 0, 0, 0},
-  {0, 28, 29, 0}, 
-  {0, 32, 33, 0},
-  {0 ,0, 0, 0},},
-
-{{0, 24, 25, 0},
-  {27, 28, 29, 30}, 
-  {31, 32, 33, 34},
-  {0 ,36, 37, 0},},
-  
-{{0, 24, 25, 0},
-  {27, 28, 29, 30}, 
-  {31, 32, 33, 34},
-  {0 ,36, 37, 0},},
-  
-{{0, 0, 0, 0},
-  {0, 28, 29, 0}, 
-  {0, 32, 33, 0},
-  {0 ,0, 0, 0},}, 
-};
+  int animate[4][4][4] = {{{23,24,25,26,},{27,0,0,30,},{31,0,0,34,},{35,36,37,38,},},{{23,0,0,26,},{0,28,29,0,},{0,32,33,0,},{35,0,0,38,},},{{23,0,0,26,},{0,28,29,0,},{0,32,33,0,},{35,0,0,38,},},{{23,24,25,26,},{27,0,0,30,},{31,0,0,34,},{35,36,37,38,},}};    
   //digitalWrite the leds that correspond to the array values for ONLY ONE LAYER!!! (at a time)
  
   for(int i=0; i<4; i++){//Z axis
@@ -306,9 +286,32 @@ int animate[4][4][4] = {
     else{
       povLayer=2;  
     }
-  }
+  } 
 }
 
+void Snake(){
+  int length=1;
+  int Direction;
+  int head[4][4]={{23,24,25...}{2,3,4,5}};
+  int oldHeads[4][4][4];
+  //int oldLevels[4];
+  
+  //FIGURE OUT NEXT HEAD
+  //Next head is based on the direction (X, Y, Z "momentum")
+ // Store "Last direction" which is the direcion that the body has to take 
+  
+  //DELETE OLDEST HEAD, WHILE SAVING RECENT HEADS
+  //figure out what the next head is, push most recent head to the old head matrix, get rid of the oldest head,
+  // the ones that should be lit are the old heads array, and the next head
+  
+  //COLLISIONS
+    //with self
+  // if the new head is a value inside of the oldHeads array, then it's game over
+    //with "food"
+  // if the new head matches the value of the "food", then don't get rid of the oldest head, or add onto the head or tail or something...
+    //increment length
+  
+}
 
 
 
