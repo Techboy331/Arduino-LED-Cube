@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -5657,9 +5657,9 @@ type 0309, grid 2.5 mm</description>
 <wire x1="60.96" y1="-17.78" x2="66.04" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="-17.78" x2="66.04" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="2.54" x2="152.4" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="2.54" x2="152.4" y2="-27.94" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="-27.94" x2="190.5" y2="-27.94" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="-27.94" x2="190.5" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="2.54" x2="152.4" y2="-26.67" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="-26.67" x2="190.5" y2="-26.67" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="-26.67" x2="190.5" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$78" class="0">
@@ -5668,10 +5668,10 @@ type 0309, grid 2.5 mm</description>
 <wire x1="58.42" y1="-15.24" x2="58.42" y2="-20.32" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="-20.32" x2="68.58" y2="-20.32" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-20.32" x2="68.58" y2="0" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="0" x2="157.48" y2="0" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="0" x2="157.48" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="-22.86" x2="180.34" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="-22.86" x2="180.34" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="0" x2="157.48" y2="1.27" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="1.27" x2="157.48" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="-22.86" x2="180.34" y2="-24.13" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="-24.13" x2="180.34" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$79" class="0">
@@ -5681,9 +5681,9 @@ type 0309, grid 2.5 mm</description>
 <wire x1="55.88" y1="-22.86" x2="71.12" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="-22.86" x2="71.12" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="-2.54" x2="162.56" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="-2.54" x2="162.56" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="-17.78" x2="170.18" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="170.18" y1="-17.78" x2="170.18" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="-2.54" x2="162.56" y2="-16.51" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="-16.51" x2="170.18" y2="-16.51" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="-16.51" x2="170.18" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$80" class="0">
@@ -5738,8 +5738,8 @@ type 0309, grid 2.5 mm</description>
 <wire x1="38.1" y1="-7.62" x2="38.1" y2="-35.56" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="-35.56" x2="83.82" y2="-35.56" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="-35.56" x2="83.82" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="-15.24" x2="162.56" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="-15.24" x2="162.56" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="-15.24" x2="161.29" y2="-13.97" width="0.1524" layer="91"/>
+<wire x1="161.29" y1="-13.97" x2="162.56" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$85" class="0">
@@ -5759,8 +5759,8 @@ type 0309, grid 2.5 mm</description>
 <wire x1="2.54" y1="2.54" x2="2.54" y2="-40.64" width="0.1524" layer="91"/>
 <wire x1="2.54" y1="-40.64" x2="88.9" y2="-40.64" width="0.1524" layer="91"/>
 <wire x1="88.9" y1="-40.64" x2="88.9" y2="-20.32" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="-20.32" x2="167.64" y2="-20.32" width="0.1524" layer="91"/>
-<wire x1="167.64" y1="-20.32" x2="167.64" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-20.32" x2="166.37" y2="-19.05" width="0.1524" layer="91"/>
+<wire x1="166.37" y1="-19.05" x2="167.64" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$87" class="0">
@@ -5770,8 +5770,8 @@ type 0309, grid 2.5 mm</description>
 <wire x1="0" y1="12.7" x2="0" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="0" y1="-43.18" x2="91.44" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="-43.18" x2="91.44" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="-22.86" x2="175.26" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="175.26" y1="-22.86" x2="175.26" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-22.86" x2="175.26" y2="-21.59" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="-21.59" x2="175.26" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$88" class="0">
@@ -5781,8 +5781,8 @@ type 0309, grid 2.5 mm</description>
 <wire x1="-2.54" y1="15.24" x2="-2.54" y2="-45.72" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="-45.72" x2="93.98" y2="-45.72" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="-45.72" x2="93.98" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="-25.4" x2="177.8" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="-25.4" x2="177.8" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-25.4" x2="176.53" y2="-24.13" width="0.1524" layer="91"/>
+<wire x1="176.53" y1="-24.13" x2="177.8" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$89" class="0">
@@ -5803,8 +5803,8 @@ type 0309, grid 2.5 mm</description>
 <wire x1="-7.62" y1="27.94" x2="-7.62" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="-7.62" y1="-50.8" x2="99.06" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="-50.8" x2="99.06" y2="-30.48" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="-30.48" x2="187.96" y2="-30.48" width="0.1524" layer="91"/>
-<wire x1="187.96" y1="-30.48" x2="187.96" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-30.48" x2="187.96" y2="-31.75" width="0.1524" layer="91"/>
+<wire x1="187.96" y1="-31.75" x2="187.96" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$91" class="0">

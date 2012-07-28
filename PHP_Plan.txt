@@ -1,0 +1,22 @@
+Plan for PHP program in 
+
+Pseudo code
+
+1. Check each checkbox matrix value to see if the box was checked
+I'm assuming "checked" is a boolean value...
+
+2. somehow use the value of the checkbox to script that if it was clicked, it should an index in the 3d
+array to be that value: 
+
+It seems that I will need to have a 2d array for each matrix of checkboxes...
+
+X && Y are any number 0-3
+
+if Checkbox at position [X][Y] is clicked in Layer 1, set animate[layer#-1][X][X]=to the corresponding pin number
+
+
+
+
+3. Print the 3D array
+
+$3darray[4][4][4]={0};
