@@ -1,8 +1,8 @@
-### ARDUINO LED CUBE
-	created by Chris P.
+Arduino LED Cube
+- Created By Chris P. 
 
-Hello World! This is the Github page for my Arduino LED cube project! I have worked hard on this, and it is finally coming together! 
+This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming. 
 
-On this site I will include some of my notes from the development process, as well as pictures and videos for visual aid. Please check out the schematic and whatnot if you are interested. I am new to open source, but I think I will release my code under the creative commons license, but I have to research it first.
+I have made an HTML/PHP program that utilizes checkboxes to write Arduino compatible code to light up LEDs. This program saves time, and is also pretty neat!
 
-
+I have also added a Joystick and two pushbuttons as input devices that can be used in any way. I personally am attempting to make Snake in 3D with the Joystick, but I hope to eventually publish this project as an open source kit. 
