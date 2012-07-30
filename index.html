@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Arduino-led-cube by Techboy331</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Arduino-led-cube</h1>
+        <p>This is the code for my 4x4x4 LED cube</p>
+        <p class="view"><a href="https://github.com/Techboy331/Arduino-LED-Cube">View the Project on GitHub <small>Techboy331/Arduino-LED-Cube</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Techboy331/Arduino-LED-Cube/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Techboy331/Arduino-LED-Cube/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Techboy331/Arduino-LED-Cube">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>Arduino LED Cube</h3>
+
+<p><em>Created By Chris P.</em></p>
+
+<p>This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming. </p>
+
+<p>I have made an HTML/PHP program that utilizes checkboxes to write Arduino compatible code to light up LEDs. This program saves time, and is also pretty neat!</p>
+
+<p>I have also added a Joystick and two pushbuttons as input devices that can be used in any way. I personally am attempting to make Snake in 3D with the Joystick, but I hope to eventually publish this project as an open source kit.</p>
+
+<h3>Bill of Materials</h3>
+
+<hr><ul>
+<li>3 packs of 25 diffused blue 3mm LEDs (75 LEDS, only 64 are used): <a href="https://www.adafruit.com/products/780">https://www.adafruit.com/products/780</a>
+</li>
+<li>25 150 Ohm Resistors, for current limiting the LEDs</li>
+<li>7 10k Ohm Resistors, to pull up the buttons and pull down the transistors</li>
+<li>2 pushbuttons</li>
+<li>2 2D Thumb Joysticks (1 used): <a href="https://www.sparkfun.com/products/9032">https://www.sparkfun.com/products/9032</a>?</li>
+<li>1 Rocker On/Off Switch, wired in line with the power supply</li>
+<li>Arduino Mega</li>
+<li>9v Power Supply AC: <a href="https://www.adafruit.com/products/63">https://www.adafruit.com/products/63</a>
+</li>
+<li>Really Big Protoboard: <a href="http://www.jameco.com/webapp/wcs/stores/servlet/Product_10001_10001_206594_-1?CID=PDF">http://www.jameco.com/webapp/wcs/stores/servlet/Product_10001_10001_206594_-1?CID=PDF</a>
+</li>
+<li>USB A to B cable</li>
+</ul><h3>System Operation Scheme</h3>
+
+<hr><ol>
+<li>The Arduino applies power to a programmed number of anode columns (my pins are 23-38)</li>
+<li>The Transistors grant ground to only one layer at a time</li>
+</ol><ul>
+<li>The use of 4x4x4 3D arrays allows the Arduino to light up different LEDs in different layers</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/Techboy331">Techboy331</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
