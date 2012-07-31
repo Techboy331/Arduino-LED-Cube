@@ -20,6 +20,15 @@ int currentY=0;
   ,
   {35, 36, 37, 38  }
 };
+
+int animate[4][4][4] = {{{23,24,25,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},}};
+
+int nextHead[4][4]={{23,24,25,26},{27,28,29,30},{31,32,33,34},{35,36,37,38}};
+int Direction=3;
+int length=3;
+int oldheads[3]={25,24,23};
+int oldLevels[3]={0,0,0};
+
 int BI;
 int BII;
 int BIII;
@@ -56,15 +65,16 @@ void setup(){
   pinMode(A1,INPUT);
   pinMode(A2,INPUT);
   
-  digitalWrite(layer,HIGH);
-  digitalWrite(joyPlane[currentX][currentY],HIGH);
+ //digitalWrite(layer,HIGH);
+ 
 
   
 }
 
 void loop(){
-  joystick();
-  buttons(); 
+ snake();
+  //joystick();
+  //buttons(); 
 //  Serial.println(joyPlane[currentX][currentY]);*/
  // test();
 //animation();
@@ -110,6 +120,58 @@ void square(){
       digitalWrite(i,LOW);
     }
   }
+}
+
+void animation(){
+  //set the array in the paste area below 
+  
+int povArrayX=0; //these values are 0-3, but them together in the array produce the pin value
+int povArrayY=0;
+int povLayer=5;  
+
+
+  //digitalWrite the leds that correspond to the array values for ONLY ONE LAYER!!! (at a time)
+ 
+  for(int i=0; i<4; i++){//Z axis
+    digitalWrite(povLayer,LOW);
+     
+    for(int j=0; j<=3; j++){//X axis
+      //turn on values that aren't zero
+     // Serial.println(j);
+      
+      for(int k=0; k<=3; k++){
+      /*Serial.print("X :");
+      Serial.println(povArrayX);*/
+      if((animate[povLayer-2][k][j])!=0){
+        digitalWrite(animate[povLayer-2][k][j],HIGH);
+      }
+      }
+    }
+    //POV
+    digitalWrite(povLayer,HIGH);
+   
+    delay(300);
+    //Turn everything off
+    digitalWrite(povLayer,LOW);
+    
+    //go through the array and turn off any LEDs that are on
+    for(int j=0; j<=3; j++){//X axis
+      //turn on values that aren't zero
+      for(int k=0; k<=3; k++){
+      if((animate[povLayer-2][k][j])!=0){
+        digitalWrite(animate[povLayer-2][k][j],LOW);
+      }
+      }
+    }
+    
+    //Change the layer
+    if(povLayer<5){
+      povLayer++;//This will also change the array value
+    }
+    else{
+      povLayer=2;  
+    }
+  } 
 }
 
 
@@ -233,84 +295,146 @@ void joystick(){
    X=analogRead(2);
    Serial.println("X: ");
    Serial.print(X);*/
-
-
 }
 
-void animation(){
-  //set the array in the paste area below 
-  
-int povArrayX=0; //these values are 0-3, but them together in the array produce the pin value
-int povArrayY=0;
-int povLayer=2;  
 
-  int animate[4][4][4] = {{{23,24,25,26,},{27,0,0,30,},{31,0,0,34,},{35,36,37,38,},},{{23,0,0,26,},{0,28,29,0,},{0,32,33,0,},{35,0,0,38,},},{{23,0,0,26,},{0,28,29,0,},{0,32,33,0,},{35,0,0,38,},},{{23,24,25,26,},{27,0,0,30,},{31,0,0,34,},{35,36,37,38,},}};    
-  //digitalWrite the leds that correspond to the array values for ONLY ONE LAYER!!! (at a time)
+
+void snake(){
+  //int length=2;
+  // Jeremy was proposing that this array could have a max size rather than incrementing its maximum size over and over again
+  int Y=analogRead(2);
+  int X=analogRead(1);
+  //Left=0, Right=1, Up=2, Down=3 
  
-  for(int i=0; i<4; i++){//Z axis
-    digitalWrite(povLayer,LOW);
-     
-    for(int j=0; j<=3; j++){//X axis
-      //turn on values that aren't zero
-     // Serial.println(j);
-      
-      for(int k=0; k<=3; k++){
-      /*Serial.print("X :");
-      Serial.println(povArrayX);*/
-      if((animate[povLayer-2][k][j])!=0){
-        digitalWrite(animate[povLayer-2][k][j],HIGH);
-      }
-      }
-    }
-    //POV
-    digitalWrite(povLayer,HIGH);
+ 
+ 
+     //FIGURE OUT NEXT HEAD
+   //only write oldest head to be low, while others should be set to high
+    //Next head is based on the direction (X, Y, Z "momentum")
    
-    delay(1);
-    //Turn everything off
-    digitalWrite(povLayer,LOW);
-    
-    //go through the array and turn off any LEDs that are on
-    for(int j=0; j<=3; j++){//X axis
-      //turn on values that aren't zero
-      for(int k=0; k<=3; k++){
-      if((animate[povLayer-2][k][j])!=0){
-        digitalWrite(animate[povLayer-2][k][j],LOW);
-      }
-      }
-    }
-    
-    //Change the layer
-    if(povLayer<5){
-      povLayer++;//This will also change the array value
-    }
-    else{
-      povLayer=2;  
-    }
-  } 
-}
 
-void Snake(){
-  int length=1;
-  int Direction;
-  int head[4][4]={{23,24,25...}{2,3,4,5}};
-  int oldHeads[4][4][4];
-  //int oldLevels[4];
-  
-  //FIGURE OUT NEXT HEAD
-  //Next head is based on the direction (X, Y, Z "momentum")
- // Store "Last direction" which is the direcion that the body has to take 
-  
-  //DELETE OLDEST HEAD, WHILE SAVING RECENT HEADS
+////////////INPUT\\\\\\\\\\\\\
+if(X>712||X<388){
+      //SETS IT LEFT
+      if(X>712){
+        Direction=0;
+      }
+      //SETS IT RIGHT
+      if(X<388){
+        Direction=1; 
+      }       
+  //  }
+else if(Y>712||Y<388){
+  //SETS IT UP
+      if(Y>712){
+        Direction=2;
+      } 
+ //SETS IT DOWN
+      if(Y<388){
+        Direction=3;
+        }
+}  
+////////SET NEXT HEAD\\\\\\\\\  
+ //LEFT
+if (Direction==0){
+ //Set next heads to be in that direction
+  if(currentX!=0){
+   currentX--;
+  }
+//WRAPS AROUND X AXIS
+  else{
+  currentX=3;
+  }
+}
+  //RIGHT
+else if(Direction==1){
+  if(currentX!=3){
+   currentX++;
+  }       
+//WRAPS AROUND X AXIS
+  else{
+  currentX=0;
+  }
+}
+ //UP
+else if (Direction==2){
+   if(currentY!=0){
+      currentY--;
+    }
+     //WRAPS AROUND Y AXIS
+    else{
+     currentY=3;
+    }
+ }
+ //DOWN
+else if (Direction==3){
+  if(currentY!=3){
+   currentY++;
+   }
+//WRAPS AROUND Y AXIS
+  else{
+  currentY=0;
+  } 
+}   
+   //DELETE OLDEST HEAD, WHILE SAVING RECENT HEADS
   //figure out what the next head is, push most recent head to the old head matrix, get rid of the oldest head,
   // the ones that should be lit are the old heads array, and the next head
   
-  //COLLISIONS
+  //REDECLARE OLDHEADS
+ /* int proxyheads[length]
+  for(int i=0; i<length; i++){
+    
+  }*/
+  //int oldheads[length];
+  //turn off the last LED, thus "deleting" it
+ //Serial.println(oldheads[length-1],DEC);
+  digitalWrite(oldheads[length-1],LOW);
+ //Serial.println(oldheads[length-1],DEC);
+  //Go through each index and push the value back an index
+  for(int i=length-1; i>0; i--){
+  oldheads[i]=oldheads[i-1];
+  Serial.print("Oldheads: ");
+  Serial.print(oldheads[i]);
+ Serial.print(",");
+  }
+   Serial.println(";");
+  //set the first index to be the current position of the X/Y plane
+  oldheads[0]=nextHead[currentX][currentY];
+ // Serial.println(oldheads[0]);
+ /*Serial.print("X: ");
+ Serial.println(currentX);
+ Serial.print("Y: ");
+ Serial.println(currentY);*/
+  //digitalWrite(head[currentX][currentY],HIGH);
+  for(int i=0; i<length; i++){
+    digitalWrite(oldheads[i],HIGH);
+  //  Serial.println(oldheads[i]);
+  }
+  delay(300);
+ 
+ 
+//3D PUSH TO ANIMATE FUNCTION
+for (int L=0; L<4; L++){
+ for(int n=0; n< sizeof(oldLevels)-1; n++){
+   if(oldLevels[n]==L){
+     for(int x=0; x<4; x++){
+      for(int y=0; y<4; y++){
+       if(oldheads[n]==(23+x+(4*y))){
+         animate[L][x][y]=oldheads[n];
+       }
+      } 
+     } 
+   }
+ } 
+}
+animation();
+ 
+//COLLISIONS
     //with self
   // if the new head is a value inside of the oldHeads array, then it's game over
     //with "food"
   // if the new head matches the value of the "food", then don't get rid of the oldest head, or add onto the head or tail or something...
     //increment length
-  
 }
 
 
