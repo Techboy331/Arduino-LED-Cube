@@ -3,6 +3,6 @@ Arduino LED Cube
 
 This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming. 
 
-I have made an HTML/PHP program that utilizes checkboxes to write Arduino compatible code to light up LEDs. This program saves time, and is also pretty neat!
+To see pictures, videos, and more information about this project, go to:
 
-I have also added a Joystick and two pushbuttons as input devices that can be used in any way. I personally am attempting to make Snake in 3D with the Joystick, but I hope to eventually publish this project as an open source kit. 
+http://techboy331.github.com/Arduino-LED-Cube/
