@@ -3,8 +3,14 @@ Arduino LED Cube
 
 This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming. 
 
+One topic to address is how I set up the HTML/PHP LED selection form. I installed Mamp, which allows me to use my computer as a local webserver to edit and run the HTML code. My point here is that you may not be able to view the HTML form unless you have installed Mamp, and have it running. 
+
+Here is a link to install Mamp: http://www.mamp.info/en/index.html
+
 To see pictures, videos, and more information about this project, go to:
 
 http://techboy331.github.com/Arduino-LED-Cube/
+
+
 
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
