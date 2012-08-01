@@ -30,20 +30,42 @@
         <h3>Arduino LED Cube</h3>
 
 <p><em>Created By Chris P.</em></p>
+<hr></hr>
 
-<img src="IMG_1070.JPG" alt="The finished cube" title="LED Cube" height="75%" width="75%" />
+<p><strong>This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming.</strong> </p>
+<img src="images/IMG_1070.JPG" alt="LED Cube" title="The finished cube" height="75%" width="75%" />
 
-<p>This project is a cube of 64 LEDs that can be programmed to make all kinds of interesting animations and patterns! Its circuitry allows for LEDs to be individually addressed in the programming. </p>
-
+<br /><br />
+<hr></hr>
 <p>I have made an HTML/PHP program that utilizes checkboxes to write Arduino compatible code to light up LEDs. This program saves time, and is also pretty neat!</p>
+<img src="images/Checkbox.png" alt="Checkboxes" title="HTML and PHP Checkbox Program" height="75%" width="75%" />
+<hr></hr>
 
-<img src="IMG_1084.JPG" alt="Joysticks FTW!!!" title="Joystick" height="75%" width="75%" />
+<p>I have also added a Joystick and two pushbuttons as input devices that can be used in any way. I'm attempting to make Snake in 3D with the Joystick, but I hope to eventually publish this project as an open source kit.</p>
+<img src="images/IMG_1084.JPG" alt="Joystick" title="Joysticks FTW!!!" height="75%" width="75%" />
 
-<p>I have also added a Joystick and two pushbuttons as input devices that can be used in any way. I personally am attempting to make Snake in 3D with the Joystick, but I hope to eventually publish this project as an open source kit.</p>
+
+<br /><br />
+<h3>Videos</h3>
+<p>Here's a video of me presenting my project.</p>
+<hr></hr>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/2NJ5HK15akg" frameborder="0" allowfullscreen></iframe>
+	
+<p>Here's a video of the beginnings of the snake program.</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/U0C8FXZa8Lw" frameborder="0" allowfullscreen></iframe>
+
+
+</ul><h3>System Operation Scheme</h3>
+<hr></hr>
+<ul>
+<li>The Arduino applies power to a programmed number of anode columns (my pins are 23-38)</li>
+<li>The Transistors grant ground to only one cathode layer at a time (pins 2-5)</li>
+<li>The use of 4x4x4 3D arrays allows the Arduino to light up different LEDs in different layers</li>
+</ul>
 
 <h3>Bill of Materials</h3>
-
-<hr><ul>
+<hr></hr>
+<ul>
 <li>3 packs of 25 diffused blue 3mm LEDs (75 LEDS, only 64 are used): <a href="https://www.adafruit.com/products/780">https://www.adafruit.com/products/780</a>
 </li>
 <li>25 150 Ohm Resistors, for current limiting the LEDs</li>
@@ -58,14 +80,7 @@
 </li>
 <li>USB A to B cable</li>
 <li>Solid core wire</li>
-</ul><h3>System Operation Scheme</h3>
 
-<hr>
-<ul>
-<li>The Arduino applies power to a programmed number of anode columns (my pins are 23-38)</li>
-<li>The Transistors grant ground to only one cathode layer at a time (pins 2-5)</li>s
-<li>The use of 4x4x4 3D arrays allows the Arduino to light up different LEDs in different layers</li>
-</ul>
       </section>
     </div>
     <footer>
