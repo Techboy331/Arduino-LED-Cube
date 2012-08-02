@@ -11,6 +11,7 @@ boolean joyRunning=false;
 int layer=5;
 int currentX=0;
 int currentY=0;
+int Delay=1;
  int joyPlane[4][4] ={ 
   {23, 24, 25, 26  }
   , //[0][0] is 23, [0][2] is 31, [1][3] is 36, [3][3] is 38 etc... I hope...
@@ -21,13 +22,17 @@ int currentY=0;
   {35, 36, 37, 38  }
 };
 
-int animate[4][4][4] = {{{23,24,25,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},},{{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},{0,0,0,0,},}};
-
-int nextHead[4][4]={{23,24,25,26},{27,28,29,30},{31,32,33,34},{35,36,37,38}};
+int animate[4][4][4] = {{{0,0,0,0,},{0,28,29,0,},{0,32,33,0,},{0,0,0,0,},},{{0,24,25,0,},{27,28,29,30,},{31,32,33,34,},{0,36,37,0,},},{{0,24,25,0,},{27,28,29,30,},{31,32,33,34,},{0,36,37,0,},},{{0,0,0,0,},{0,28,29,0,},{0,32,33,0,},{0,0,0,0,},}};int nextHead[4][4]={{23,24,25,26},{27,28,29,30},{31,32,33,34},{35,36,37,38}};
+int nextLevel=3;
+int animateNew[4][4][4];
 int Direction=3;
 int length=3;
 int oldheads[3]={25,24,23};
-int oldLevels[3]={0,0,0};
+int oldheadsCopy[3];
+int oldLevels[3]={3,3,3};
+int oldLevelsCopy[3];
+int food=26/*random(23,39)*/;
+int foodLevel=3 /*random(0,4)*/;
 
 int BI;
 int BII;
@@ -64,20 +69,29 @@ void setup(){
   //Potentiometers
   pinMode(A1,INPUT);
   pinMode(A2,INPUT);
+  pinMode(12,OUTPUT);
   
  //digitalWrite(layer,HIGH);
- 
+// digitalWrite(23,HIGH);
+digitalWrite(13,LOW); 
 
   
 }
 
 void loop(){
- snake();
-  //joystick();
-  //buttons(); 
-//  Serial.println(joyPlane[currentX][currentY]);*/
+snake();
+
+
+//DO THIS FIRST
+animation();
+
+//THEN THIS
+//joystick();
+buttons(); 
+
+
+
  // test();
-//animation();
 
 }
 
@@ -150,7 +164,10 @@ int povLayer=5;
     //POV
     digitalWrite(povLayer,HIGH);
    
-    delay(300);
+    delay(1);
+    /*if (millis() >20000){
+      Delay++;
+    }*/
     //Turn everything off
     digitalWrite(povLayer,LOW);
     
@@ -175,50 +192,7 @@ int povLayer=5;
 }
 
 
-void buttons(){
- // int layer=5;
-  //DOWN BUTTON: MOVES LED/SNAKE DOWN  
-  BI=digitalRead(8);
-  Serial.println(BI);
-  if(BI==0){
-    //TURN CURRENT LAYER OFF
-    delay(200);
-    digitalWrite(layer,LOW);
-    //CHANGE CURRENT LAYER
-    if (layer!=2){
-      layer--;
-    }
-    else{
-      layer=5;
-    }
-    //TURN NEW LAYER ON
-    digitalWrite(layer,HIGH);
-  }
-  //UP BUTTON: MOVES LED/SNAKE UP
-  BII=digitalRead(9);
-  Serial.println(BII);
-  if(BII==0){
-    delay(200);
-    //TURNS CURRENT LAYER OFF
-    digitalWrite(layer,LOW);
-    //CHANGE THE CURRENT LAYER
-    if (layer!=5){
-      layer++;
-    }
-    else{
-      layer=2;
-    }
-    //TURN NEW LAYER ON
-    digitalWrite(layer,HIGH);
-  } 
-  
-  //JOYSTICK BUTTON
-  BIII=digitalRead(10);
-  Serial.println(BIII);
-  if(BIII==0){
-    square();
-  }
-}
+
 
 void joystick(){
   //IF JOYSTICK MOVES OUT OF THRESHOLD
@@ -297,7 +271,52 @@ void joystick(){
    Serial.print(X);*/
 }
 
-
+void buttons(){
+ // int layer=5;
+  //DOWN BUTTON: MOVES LED/SNAKE DOWN  
+  BI=digitalRead(8);
+//Serial.println(BI);
+  if(BI==0){
+    //TURN CURRENT LAYER OFF
+    Direction=4;
+   /* delay(200);
+    digitalWrite(layer,LOW);
+    //CHANGE CURRENT LAYER
+    if (layer!=2){
+      layer--;
+    }
+    else{
+      layer=5;
+    }
+    //TURN NEW LAYER ON
+    digitalWrite(layer,HIGH);*/
+  }
+  //UP BUTTON: MOVES LED/SNAKE UP
+  BII=digitalRead(9);
+ // Serial.println(BII);
+  if(BII==0){
+    Direction=5;
+   /* delay(200);
+    //TURNS CURRENT LAYER OFF
+    digitalWrite(layer,LOW);
+    //CHANGE THE CURRENT LAYER
+    if (layer!=5){
+      layer++;
+    }
+    else{
+      layer=2;
+    }
+    //TURN NEW LAYER ON
+    digitalWrite(layer,HIGH);*/
+  }
+  
+  //JOYSTICK BUTTON
+  /*BIII=digitalRead(10);
+  Serial.println(BIII);
+  if(BIII==0){
+    square();
+  }*/
+}
 
 void snake(){
   //int length=2;
@@ -305,8 +324,7 @@ void snake(){
   int Y=analogRead(2);
   int X=analogRead(1);
   //Left=0, Right=1, Up=2, Down=3 
- 
- 
+  
  
      //FIGURE OUT NEXT HEAD
    //only write oldest head to be low, while others should be set to high
@@ -356,8 +374,8 @@ else if(Direction==1){
   currentX=0;
   }
 }
- //UP
-else if (Direction==2){
+ //Forward
+ else if (Direction==2){
    if(currentY!=0){
       currentY--;
     }
@@ -366,8 +384,8 @@ else if (Direction==2){
      currentY=3;
     }
  }
- //DOWN
-else if (Direction==3){
+ //Backward
+ else if (Direction==3){
   if(currentY!=3){
    currentY++;
    }
@@ -375,10 +393,31 @@ else if (Direction==3){
   else{
   currentY=0;
   } 
-}   
-   //DELETE OLDEST HEAD, WHILE SAVING RECENT HEADS
-  //figure out what the next head is, push most recent head to the old head matrix, get rid of the oldest head,
-  // the ones that should be lit are the old heads array, and the next head
+} 
+//UP
+else if (Direction==4){
+//move the head up 
+if(nextLevel!=0){
+nextLevel--;
+}
+else{
+ nextLevel=3; 
+}
+}
+//DOWN
+else if (Direction==5){
+//move the head up
+if(nextLevel!=3){
+nextLevel++;
+}
+else{
+ nextLevel=0; 
+} 
+}
+
+//DELETE OLDEST HEAD, WHILE SAVING RECENT HEADS
+//figure out what the next head is, push most recent head to the old head matrix, get rid of the oldest head,
+// the ones that should be lit are the old heads array, and the next head
   
   //REDECLARE OLDHEADS
  /* int proxyheads[length]
@@ -388,47 +427,142 @@ else if (Direction==3){
   //int oldheads[length];
   //turn off the last LED, thus "deleting" it
  //Serial.println(oldheads[length-1],DEC);
-  digitalWrite(oldheads[length-1],LOW);
- //Serial.println(oldheads[length-1],DEC);
+ 
+ 
+
+  if(nextHead[currentX][currentY]==food && nextLevel == foodLevel){
+   
+   for(int i=sizeof(oldheads)-1; i>0; i--){
+    oldheadsCopy[i]=oldheads[i];
+    oldLevelsCopy[i]=oldLevels[i];
+   } 
+   length++; 
+   
+  delay(200); 
+   int oldheads[length];
+   int oldLevels[length];
+  // Serial.print("line 439");
+ 
+   for(int i=sizeof(oldheadsCopy)-1; i>0; i--){
+     oldheads[i]=oldheadsCopy[i];
+     oldLevels[i]=oldLevelsCopy[i];
+      
+ }
+ // 
+   
+   
+  // oldLevels[1]=oldLevels[length-2];
+  // oldheads[1]=oldheads[0];
+   int oldheadsCopy[length];
+   int oldLevelsCopy[length];
+  }
+  else{
+   digitalWrite(oldheads[length-1],LOW);
+  }
+ 
   //Go through each index and push the value back an index
+  //  Serial.print("line 459 "); 
   for(int i=length-1; i>0; i--){
   oldheads[i]=oldheads[i-1];
-  Serial.print("Oldheads: ");
-  Serial.print(oldheads[i]);
- Serial.print(",");
+  oldLevels[i]=oldLevels[i-1];
+  Serial.print(oldLevels[i-1]);
+  Serial.print(",");
   }
-   Serial.println(";");
+  Serial.println(" ");
+  // Serial.println(";");
   //set the first index to be the current position of the X/Y plane
+  
+  for(int i=0; i<=sizeof(oldheads); i++){
+  if(nextHead[currentX][currentY] == oldheads[i]){
+    Serial.println("GAME OVER!!!");
+    //break;
+  }
+  }
+  
   oldheads[0]=nextHead[currentX][currentY];
+  //digitalWrite(oldheads[1],HIGH);
+  //Serial.println(oldheads[1]);
+  oldLevels[0]=nextLevel;
+  // Serial.print("line 484 "); 
+  //for(int i=length-1; i>0; i--){
+  //Serial.print(nextLevel);
+  //Serial.print(",");
+ // }
+ // Serial.println(" ");
  // Serial.println(oldheads[0]);
  /*Serial.print("X: ");
  Serial.println(currentX);
  Serial.print("Y: ");
  Serial.println(currentY);*/
   //digitalWrite(head[currentX][currentY],HIGH);
-  for(int i=0; i<length; i++){
+ /* for(int i=0; i<length; i++){
     digitalWrite(oldheads[i],HIGH);
   //  Serial.println(oldheads[i]);
-  }
-  delay(300);
+  }*/
  
- 
+ //Empty the Animate Array
+ for(int i=0; i<4; i++){
+  for(int j=0; j<4; j++){
+   for(int k=0; k<4; k++){
+     animateNew[i][j][k]=0;
+   }
+  } 
+ }
+//delay(150);
 //3D PUSH TO ANIMATE FUNCTION
+delay(300);
 for (int L=0; L<4; L++){
+animation();
  for(int n=0; n< sizeof(oldLevels)-1; n++){
    if(oldLevels[n]==L){
-     for(int x=0; x<4; x++){
+     for(int x=0; x<4; x++){  
       for(int y=0; y<4; y++){
        if(oldheads[n]==(23+x+(4*y))){
-         animate[L][x][y]=oldheads[n];
+         animateNew[L][x][y]=oldheads[n];
+       }
+      } 
+     }
+   }
+   if(foodLevel==L){
+      for(int x=0; x<4; x++){  
+      for(int y=0; y<4; y++){
+       if(food==(23+x+(4*y))){  
+         animateNew[L][x][y]=food;
        }
       } 
      } 
    }
- } 
+ }
 }
-animation();
- 
+//animation();
+//delay(10);
+for(int i=0; i<4; i++){
+  for(int j=0; j<4; j++){
+    for(int k=0; k<4; k++){
+    animate[i][j][k]=animateNew[i][j][k];
+   }
+  }
+}
+//animation();
+//delay(150);
+/*
+for(int i=0; i<4; i++){
+  Serial.print("Layer: ");
+   Serial.println(i);
+ for(int j=0; j<4; j++){
+   Serial.print("X value: ");
+   Serial.println(j);
+   for(int k=0; k<4; k++){
+Serial.print(animate[i][j][k]);
+Serial.print(",");
+}
+Serial.println(" ");
+}
+}
+*/
+//for(int i=0; i<=; i++){
+//animation();
+//}
 //COLLISIONS
     //with self
   // if the new head is a value inside of the oldHeads array, then it's game over
@@ -437,6 +571,21 @@ animation();
     //increment length
 }
 
+void gameover(){
+ square();
+
+  for (int i=2; i<=5; i++){
+    digitalWrite (i,HIGH);
+    
+    for(int j=23; j<=38; j++){
+      digitalWrite (j,HIGH);
+      delay(100);
+      digitalWrite(j,LOW);
+    } 
+    digitalWrite (i,LOW);
+  }
+  
+}
 
 
 
